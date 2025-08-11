@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Básico -->
+<title>¿Cuántos días faltan? - Calculadora online gratuita</title>
+<meta name="description" content="Calcula gratis cuántos días, semanas y horas faltan para tu evento, cumpleaños, viaje o examen. Herramienta rápida y sencilla online.">
+<meta name="keywords" content="cuantos días faltan, contador de días, cuenta regresiva, calculadora de días, cuenta atrás, días hasta navidad, días hasta mi cumpleaños">
+<link rel="canonical" href="https://tudominio.com/">
+
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+  h1 { color: #2c3e50; }
+  input, button { padding: 10px; margin: 10px; font-size: 16px; }
+  button { background-color: #3498db; color: white; border: none; cursor: pointer; }
+  button:hover { background-color: #2980b9; }
+  #resultado { margin-top: 20px; font-size: 18px; color: #27ae60; }
+</style>
+</head>
+<body>
+
+<h1>¿Cuántos días faltan?</h1>
+<p>Selecciona una fecha y te diremos cuántos días, semanas y horas faltan.</p>
+
+<input type="date" id="fechaObjetivo">
+<button onclick="calcular()">Calcular</button>
+
+<h2 id="resultado"></h2>
+
+<script>
+function calcular() {
+  const fechaInput = document.getElementById('fechaObjetivo').value;
+  if (!fechaInput) {
+    document.getElementById('resultado').innerText = "Por favor, selecciona una fecha.";
+    return;
+  }
+  
+  const fechaObjetivo = new Date(fechaInput);
+  const hoy = new Date();
+  
+  const diferenciaMs = fechaObjetivo - hoy;
+  
+  if (diferenciaMs < 0) {
+    document.getElementById('resultado').innerText = "Esa fecha ya pasó.";
+    return;
+  }
+  
+  const dias = Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
+  const semanas = (dias / 7).toFixed(1);
+  const horas = Math.ceil(diferenciaMs / (1000 * 60 * 60));
+  
+  document.getElementById('resultado').innerText = 
+    `Faltan ${dias} días (${semanas} semanas, ${horas} horas) para tu fecha.`;
+}
+</script>
+
+</body>
+</html>
